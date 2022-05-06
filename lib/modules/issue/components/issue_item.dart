@@ -22,9 +22,7 @@ class IssueItem extends StatelessWidget {
     return GestureDetector(
       onTap: () async {
         Uri uri = Uri.parse(issueModel.htmlUrl.toString());
-        if (await canLaunchUrl(uri)) {
-          await launchUrl(uri);
-        }
+        await launchUrl(uri);
       },
       child: SizedBox(
         height: 75,

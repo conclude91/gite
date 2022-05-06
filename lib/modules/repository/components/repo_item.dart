@@ -19,9 +19,7 @@ class RepoItem extends StatelessWidget {
     return GestureDetector(
       onTap: () async {
         Uri uri = Uri.parse(repoModel.htmlUrl.toString());
-        if (await canLaunchUrl(uri)) {
-          await launchUrl(uri);
-        }
+        await launchUrl(uri);
       },
       child: SizedBox(
         height: 75,
@@ -96,7 +94,8 @@ class RepoItem extends StatelessWidget {
                               overflow: TextOverflow.ellipsis,
                             ),
                             Text(
-                              'Forks count : ' + repoModel.forksCount.toString(),
+                              'Forks count : ' +
+                                  repoModel.forksCount.toString(),
                               style: TextStyle(
                                   fontSize: 11, color: AppColors.dark),
                               maxLines: 1,

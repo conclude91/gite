@@ -20,9 +20,7 @@ class UserItem extends StatelessWidget {
     return GestureDetector(
       onTap: () async {
         Uri uri = Uri.parse(userModel.htmlUrl.toString());
-        if (await canLaunchUrl(uri)) {
-          await launchUrl(uri);
-        }
+        await launchUrl(uri);
       },
       child: SizedBox(
         height: 75,
@@ -90,7 +88,11 @@ class UserItem extends StatelessWidget {
                             ),
                             Text(
                               'Type : ' +
-                                  userModel.type.toString().split('.').last.toCapitalize(),
+                                  userModel.type
+                                      .toString()
+                                      .split('.')
+                                      .last
+                                      .toCapitalize(),
                               style: TextStyle(
                                   fontSize: 11, color: AppColors.dark),
                               maxLines: 1,

@@ -85,7 +85,12 @@ class _UserListState extends State<UserList> {
           SnackBar(
             backgroundColor: AppColors.dark.withOpacity(0.95),
             behavior: SnackBarBehavior.floating,
-            content: Text('All data has been loaded...'),
+            content: Text(
+              'All data has been loaded...',
+              style: TextStyle(
+                color: AppColors.light,
+              ),
+            ),
           ),
         );
       }
@@ -95,7 +100,12 @@ class _UserListState extends State<UserList> {
           SnackBar(
             behavior: SnackBarBehavior.floating,
             backgroundColor: AppColors.dark.withOpacity(0.9),
-            content: Text(state.error),
+            content: Text(
+              state.error,
+              style: TextStyle(
+                color: AppColors.light,
+              ),
+            ),
           ),
         );
         context.read<UserBloc>().onLoadMore = false;

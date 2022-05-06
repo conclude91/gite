@@ -1,18 +1,21 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../themes/app_colors.dart';
+import '../../../utils/app_extensions.dart';
 import '../models/issue_model.dart';
 
 class IssueItem extends StatelessWidget {
-  const IssueItem({
+  IssueItem({
     Key? key,
     required this.issueModel,
   }) : super(key: key);
 
   final IssueModel issueModel;
+  final DateFormat dateFormat = DateFormat('dd-MM-yyyy');
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +84,12 @@ class IssueItem extends StatelessWidget {
                               overflow: TextOverflow.ellipsis,
                             ),
                             Text(
-                              'State : ' + issueModel.state.toString(),
+                              'State : ' +
+                                  issueModel.state
+                                      .toString()
+                                      .split('.')
+                                      .last
+                                      .toCapitalize(), //userModel.type.toString().split('.').last.toCapitalize()
                               style: TextStyle(
                                   fontSize: 12, color: AppColors.dark),
                               maxLines: 1,
@@ -95,7 +103,12 @@ class IssueItem extends StatelessWidget {
                               overflow: TextOverflow.ellipsis,
                             ),
                             Text(
-                              'Updated at : ' + issueModel.updatedAt.toString(),
+                              'Updated at : ' +
+                                  dateFormat.format(
+                                    DateTime.parse(
+                                      issueModel.updatedAt.toString(),
+                                    ),
+                                  ),
                               style: TextStyle(
                                   fontSize: 11, color: AppColors.dark),
                               maxLines: 1,
